@@ -1,0 +1,190 @@
+﻿<Window x:Class="StudentInfoManagement.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StudentInfoManagement"
+        mc:Ignorable="d"
+        Title="QUẢN LÝ SINH VIÊN" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <GroupBox Header="Thông tin sinh viên"
+                  Margin="35,10,35,10"
+                  Grid.Row="0">
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Mã số -->
+                <TextBlock Text="Mã số"
+                           Grid.Row="0"
+                           Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Margin="5"/>
+                <TextBox x:Name="studentCodeTxtBox"
+                         Grid.Row="0"
+                         Grid.Column="1"
+                         Margin="5"
+                         Width="200"/>
+
+                <!-- Họ tên -->
+                <TextBlock Text="Họ tên"
+                           Grid.Row="0"
+                           Grid.Column="2"
+                           VerticalAlignment="Center"
+                           Margin="5"/>
+                <TextBox x:Name="studentNameTxtBox"
+                         Grid.Row="0"
+                         Grid.Column="3"
+                         Width="190"
+                         Margin="5"/>
+
+                <!-- Ngày sinh -->
+                <TextBlock Text="Ngày sinh"
+                           Grid.Row="1"
+                           Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Margin="5"/>
+                <DatePicker x:Name="birthdayBox"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Width="200"
+                            Margin="5"/>
+
+                <!-- Giới tính -->
+                <TextBlock Text="Giới tính"
+                           Grid.Row="1"
+                           Grid.Column="2"
+                           VerticalAlignment="Center"
+                           Margin="5"/>
+                <ComboBox x:Name="genderComboBox"
+                          Grid.Row="1"
+                          Grid.Column="3"
+                          HorizontalAlignment="Left"
+                          Margin="50,5,5,5"
+                          Width="75">
+                    <ComboBoxItem Content="Nam"/>
+                    <ComboBoxItem Content="Nữ"/>
+                </ComboBox>
+
+                <!-- Điện thoại -->
+                <TextBlock Text="Điện thoại"
+                           Grid.Row="2"
+                           Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Margin="5"/>
+                <TextBox x:Name="phoneNumber"
+                         Grid.Row="2"
+                         Grid.Column="1"
+                         VerticalAlignment="Center"
+                         Margin="5"
+                         Width="200"/>
+
+                <!-- Địa chỉ -->
+                <TextBlock Text="Địa chỉ"
+                           Grid.Row="2"
+                           Grid.Column="2"
+                           VerticalAlignment="Center"
+                           Margin="5"/>
+                <TextBox x:Name="addressTxtBox"
+                         Grid.Row="2"
+                         Grid.Column="3"
+                         VerticalAlignment="Center"
+                         Width="190"
+                         Margin="5"/>
+            </Grid>
+        </GroupBox>
+
+        <!-- Bảng lưu trữ thông tin -->
+        <DataGrid x:Name="studentInfoGrid"
+                  Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  HeadersVisibility="Column"
+                  CanUserAddRows="True"
+                  Margin="20, 20, 20, 70"
+                  SelectionChanged="studentChoose">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Mã số" 
+                                    Binding="{Binding StudentCode}"
+                                    Width="100"/>
+                <DataGridTextColumn Header="Họ tên" 
+                                    Binding="{Binding StudentName}"
+                                    Width="150"/>
+                <DataGridTextColumn Header="Ngày sinh" 
+                                    Binding="{Binding Birthday}"
+                                    Width="100"/>
+                <DataGridTextColumn Header="Giới tính" 
+                                    Binding="{Binding Gender}"
+                                    Width="75"/>
+                <DataGridTextColumn Header="Điện thoại" 
+                                    Binding="{Binding Phone}"
+                                    Width="100"/>
+                <DataGridTextColumn Header="Địa chỉ" 
+                                    Binding="{Binding Address}"
+                                    Width="250"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Nút thêm -->
+        <Button x:Name="addBtn"
+                Content="THÊM" 
+                HorizontalAlignment="Left" 
+                Height="35" 
+                Margin="20,216,0,0" 
+                Grid.Row="1" 
+                VerticalAlignment="Top" 
+                Width="78"
+                Click="addBtn_Click"
+                Cursor="Hand"/>
+
+        <!-- Nút sửa -->
+        <Button x:Name="editBtn"
+                Content="SỬA" 
+                HorizontalAlignment="Left" 
+                Height="35" 
+                Margin="142,216,0,0" 
+                Grid.Row="1" 
+                VerticalAlignment="Top" 
+                Width="78"
+                Click="editBtn_Click"
+                Cursor="Hand"/>
+
+        <!-- Nút xóa -->
+        <Button x:Name="deleteBtn"
+                Content="XÓA" 
+                HorizontalAlignment="Left" 
+                Height="35" 
+                Margin="264,216,0,0" 
+                Grid.Row="1" 
+                VerticalAlignment="Top" 
+                Width="78"
+                Click="deleteBtn_Click"
+                Cursor="Hand"/>
+
+        <!-- Nút thoát -->
+        <Button x:Name="exitBtn"
+                Content="THOÁT" 
+                HorizontalAlignment="Left" 
+                Height="35" 
+                Margin="717,216,0,0" 
+                Grid.Row="1" 
+                VerticalAlignment="Top" 
+                Width="63"
+                Click="exitBtn_Click"
+                Cursor="Hand"/>
+    </Grid>
+</Window>

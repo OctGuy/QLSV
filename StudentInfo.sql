@@ -1,0 +1,18 @@
+CREATE DATABASE QLSV
+GO
+
+USE QLSV
+GO
+
+CREATE TABLE StudentInfo
+(
+	ID INT PRIMARY KEY IDENTITY(1,1),
+	StudentCode NVARCHAR(10),
+	StudentName NVARCHAR(100),
+	Birthday DATETIME,
+	Gender NVARCHAR(10),
+	Phone NVARCHAR(20),
+	Address NVARCHAR(100)
+)
+
+SELECT * FROM StudentInfo;
